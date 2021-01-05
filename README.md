@@ -1,0 +1,2 @@
+# goauth
+Go authentication framework
