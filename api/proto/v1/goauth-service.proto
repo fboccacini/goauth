@@ -1,0 +1,35 @@
+syntax = "proto3";
+
+option go_package = "google.golang.org/protobuf/v1";
+package v1;
+
+message Login {
+  string api = 1;
+  string username = 2;
+  string password = 3;
+}
+
+message LoginRequest {
+  string api = 1;
+  Login login = 2;
+}
+
+message AuthenticateRequest {
+  string api = 1;
+  string username = 2;
+  string service = 3;
+  string token = 4;
+}
+
+message AuthenticateResponse {
+  string api = 1;
+  bool status = 2;
+  string token = 3;
+  string message = 4;
+}
+
+service GoAuthService {
+  rpc Signup(LoginRequest) returns (AuthenticateResponse);
+  rpc Login(LoginRequest) returns (AuthenticateResponse);
+  rpc Authenticate(AuthenticateRequest) returns (AuthenticateResponse);
+}
